@@ -1,0 +1,31 @@
+{
+	"mode": "development",
+	"development": {
+	    "mongoURL": "mongodb://localhost:27017/cha",
+		"hostname": "http://localhost",
+	    "port": 3000,
+	    "mysqlConfig": {
+	        "host": "localhost",
+	        "user": "root",
+	        "password": "",
+	        "database": "stock",
+	        "ConnectionLimit": 10
+	    },
+	    "logFilePath": "/var/log/plugin.log",
+	    "siteUrl": "http://ec2-54-238-195-108.ap-northeast-1.compute.amazonaws.com:3000"
+	},
+	"production": {
+		"mongoURL": "mongodb://localhost:27017/cha",
+		"hostname": "http://localhost",
+	    "port": 3000,
+	    "mysqlConfig": {
+	        "host": "localhost",
+	        "user": "root",
+	        "password": "",
+	        "database": "stock",
+	        "ConnectionLimit": 10
+	    },
+	    "logFilePath": "/var/log/plugin.log",
+	    "siteUrl": "http://ec2-54-238-195-108.ap-northeast-1.compute.amazonaws.com:3000"
+	}
+}

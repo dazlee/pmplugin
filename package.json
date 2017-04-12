@@ -1,0 +1,46 @@
+{
+  "name": "PMPlugin",
+  "version": "0.0.1",
+  "description": "website for plugin editing/publishing",
+  "scripts": {
+    "start": "node bin/root.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  },
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "body-parser": "^1.14.2",
+    "bootstrap": "^3.3.6",
+    "connect-flash": "^0.1.1",
+    "consolidate": "^0.14.0",
+    "cookie-parser": "^1.4.1",
+    "debug": "^2.2.0",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "feedparser-promised": "^1.1.1",
+    "font-awesome": "^4.7.0",
+    "immutable": "^3.7.6",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.13.1",
+    "moment": "^2.12.0",
+    "mongoose": "^4.4.4",
+    "mongoose-find-one-or-create": "^0.2.0",
+    "morgan": "^1.6.1",
+    "multer": "^1.3.0",
+    "node-uuid": "^1.4.7",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.0-beta11",
+    "request": "^2.79.0",
+    "require": "^2.4.20",
+    "webshot": "^0.18.0",
+    "winston": "^2.2.0"
+  }
+}
