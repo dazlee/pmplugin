@@ -12,7 +12,6 @@ const serverLogger = require("./lib/logger");
 
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
-app.use(express.static(path.join(__dirname, '../public')));
 app.use(connectionLogger("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -26,10 +25,17 @@ app.use(session({
 // app.use(passport.initialize());
 // app.use(passport.session());
 
+app.use(require('stylus').middleware( {
+	src: path.join(__dirname, '../client'),
+	dest: path.join(__dirname, '../public'),
+	compress: true,
+}));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // connect to mongoDB
 const mongoose = require('mongoose');
 let serverConfig = require("./config")[global.MODE];
+mongoose.Promise = global.Promise;
 mongoose.connect(serverConfig.mongoURL, (error) => {
     if (error) {
         serverLogger.error("please make sure mongodb is running", serverConfig.mongoURL);
@@ -42,6 +48,9 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
 // disable routes temporarily
 app.use("/", require("./routes/app"));
 app.use("/plugin", require("./routes/plugin"));
+
+// api
+app.use("/api/plugin", require("./routes/api/plugin"));
 
 // catch 404 and handle it
 app.use(function (req, res, next) {

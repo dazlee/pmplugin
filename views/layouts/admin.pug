@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 doctype html
 html(lang="zh-TW")
 	head
@@ -16,12 +14,14 @@ html(lang="zh-TW")
 		block head_style
 			link(href="/css/bootstrap.min.css", rel="stylesheet")
 			link(href="/css/metisMenu.min.css", rel="stylesheet")
-			link(href="/css/font-awesome.min.css", rel="stylesheet", type="text/css")
+			link(href="/css/font-awesome.min.css", rel="stylesheet")
 			link(href="/css/template.min.css", rel="stylesheet")
+			link(href="/css/admin.css", rel="stylesheet")
+			link(href="/css/plugin.css", rel="stylesheet")
 	body
 		#wrapper
 			include navigation.pug
-			#page-wrapper
+			#page-wrapper.container
 				block body_content
 
 		block body_scripts
