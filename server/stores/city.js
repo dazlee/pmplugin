@@ -5,7 +5,14 @@ function getAllCities() {
 	return CityModel.find({}, projection).lean()
 	.exec();
 }
+function getCityById(cityId) {
+	return CityModel.findOne({
+		_id: cityId
+	}, projection).lean()
+	.exec();
+}
 
 module.exports = {
-	getAllCities
+	getAllCities,
+	getCityById
 };

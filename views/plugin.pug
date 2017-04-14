@@ -8,15 +8,25 @@ block body_content
 			.pm-plugin-content
 				.pm-input-group
 					label 縣市
-					select.pm-input-control
-						option 台北市
+					select#city-selector.pm-input-control
+						for city in cities
+							option(value=city._id) #{city.name}
+				- var defaultCity = cities[0];
+				- var defaultAreas = areas.filter(function (area) { return area.cityId == defaultCity._id});
 				.pm-input-group
 					label 鄉鎮區
-					select.pm-input-control
-						option 大安區
-				button.pm-btn.pm-btn-blue 送出
-				#baby-compensation-result
+					select#area-selector.pm-input-control
+						for area in defaultAreas
+							option(value=area._id) #{area.name}
+				button#submit-baby-compensation-btn.pm-btn.pm-btn-blue 送出
+				#baby-compensation-result.pm-plugin-message
+					.pm-plugin-message-title
+					pre.pm-plugin-message-content
+
 			.pm-plugin-footer
+		script.
+			var cities = !{JSON.stringify(cities)};
+			var areas = !{JSON.stringify(areas)};
 	.editing
 		.admin-title 修改區
 		for city in cities
@@ -25,7 +35,7 @@ block body_content
 				.col-md-4
 					.pm-input-group
 						label #{city.name} 全區
-						input.pm-input-control(
+						textarea.pm-input-control(
 							id="city_"+city._id
 							type="text"
 							data-cityid=city._id
@@ -46,7 +56,7 @@ block body_content
 									for area in areasByCity
 										option(value=area._id) #{area.name} #{area.babyCompensation || 0}
 							.col-md-6
-								input.pm-input-control.col-md-6(
+								textarea.pm-input-control(
 									id="area_"+city._id
 									type="text"
 									placeholder="修改鄉鎮區"
