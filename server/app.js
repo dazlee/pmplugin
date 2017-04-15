@@ -45,11 +45,13 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
     serverLogger.info("connected to mongoDB", serverConfig.mongoURL);
 });
 
+app.use("/plugin", require("./routes/plugin"));
 // disable routes temporarily
 app.use("/", require("./routes/app"));
-app.use("/plugin", require("./routes/plugin"));
+app.use("/admin/plugin", require("./routes/plugin-editing"));
 
 // api
+app.use("/plugin", require("./routes/plugin"));
 app.use("/api/plugin", require("./routes/api/plugin"));
 
 // catch 404 and handle it

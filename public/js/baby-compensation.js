@@ -1,5 +1,5 @@
 $(function () {
-	if (areas) {
+	if (baseUrl && areas) {
 		$(document).on("change", "#city-selector", function (e) {
 			var selector = e.target;
 			var cityId = selector.value;
@@ -15,7 +15,7 @@ $(function () {
 			var citySelector = document.querySelector("#city-selector");
 			var areaSelector = document.querySelector("#area-selector");
 			$.ajax({
-				url: "/api/plugin/baby-compensation/city/" + citySelector.value + "/area/" + areaSelector.value,
+				url: baseUrl + "/api/plugin/baby-compensation/city/" + citySelector.value + "/area/" + areaSelector.value,
 				type: 'GET',
 				success: function(data, textStatus) {
 					document.querySelector("#baby-compensation-result .pm-plugin-message-title").innerHTML = data.city.name + " " + data.area.name;
