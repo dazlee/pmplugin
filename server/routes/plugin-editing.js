@@ -39,5 +39,19 @@ router.get("/:plugin/simulation", function (req, res) {
 		res.end();
 	});
 });
+router.get("/:plugin/statistic", function (req, res) {
+	const promises = [CityStore.getAllCities(), AreaStore.getAllAreasWithBabyCompensation()]
+	const baseUrl = global.HOSTNAME + ":" + global.PORT;
+	const renderer = req.params.plugin + "-statistic";
+	Promise.all(promises)
+	.then(([cities, areas]) => {
+		res.render(renderer, {
+		});
+	})
+	.catch((error) => {
+		res.send("error");
+		res.end();
+	});
+});
 
 module.exports = router;

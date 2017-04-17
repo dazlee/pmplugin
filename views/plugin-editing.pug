@@ -1,72 +1,110 @@
 extends ./layouts/admin
 
+include ./include-plugins
+
 block body_content
 	.html-layout
 		.admin-title 前端HTML
-		#baby-compensation.pm-plugin
-			.pm-plugin-title 生育補助計算機
-			.pm-plugin-content
-				.pm-input-group
-					label 縣市
-					select#city-selector.pm-input-control
-						for city in cities
-							option(value=city._id) #{city.name}
-				- var defaultCity = cities[0];
-				- var defaultAreas = areas.filter(function (area) { return area.cityId == defaultCity._id});
-				.pm-input-group
-					label 鄉鎮區
-					select#area-selector.pm-input-control
-						for area in defaultAreas
-							option(value=area._id) #{area.name}
-				button#submit-baby-compensation-btn.pm-btn.pm-btn-blue 送出
-				#baby-compensation-result.pm-plugin-message
-					.pm-plugin-message-title
-					pre.pm-plugin-message-content
-
-			.pm-plugin-footer
-		script.
-			var baseUrl = "!{baseUrl}";
-			var cities = !{JSON.stringify(cities)};
-			var areas = !{JSON.stringify(areas)};
+		+baby_compensation()
 	.editing
 		.admin-title 修改區
 		for city in cities
 			- var areasByCity = areas.filter(function (area) {return area.cityId == city._id;})
+			- var defaultArea = areasByCity[0];
 			.row
-				.col-md-4
-					.pm-input-group
-						label #{city.name} 全區
-						textarea.pm-input-control(
-							id="city_"+city._id
-							type="text"
-							data-cityid=city._id
-							placeholder="修改全區"
-						)
-					.pm-input-group
-						button.pm-btn.pm-btn-blue.update-city-compensation-btn(
-							data-for="city_"+city._id
-						) 更新
-				.col-md-4
-					.pm-input-group
-						label 鄉鎮區
-						.row
-							.col-md-6
-								select.pm-input-control.area-selection(
-									id="area_"+city._id + "_selection"
-								)
-									for area in areasByCity
-										option(value=area._id) #{area.name} #{area.babyCompensation || 0}
-							.col-md-6
+				.col-md-6
+					.panel.panel-primary
+						.panel-heading 修改#{city.name}全區
+						.panel-body
+							.pm-input-group
+								label #{city.name}
 								textarea.pm-input-control(
-									id="area_"+city._id
+									id="city_"+city._id
 									type="text"
-									placeholder="修改鄉鎮區"
+									data-cityid=city._id
+									placeholder=""
 								)
-					.pm-input-group
-						button.pm-btn.pm-btn-blue.update-area-compensation-btn(
-							data-for="area_"+city._id
-							data-forselect="area_"+city._id+"_selection"
-						) 更新
+							.pm-input-group
+								button.pm-btn.pm-btn-blue.update-city-compensation-btn(
+									data-for="city_"+city._id
+								) 更新
+							.pm-input-group
+								label 網站連結
+								input.pm-input-control(
+									id="city_"+city._id+"_url"
+									type="text"
+									data-cityid=city._id
+									placeholder=""
+								)
+							.pm-input-group
+								button.pm-btn.pm-btn-blue.update-city-compensation-url-btn(
+									data-for="city_"+city._id+"_url"
+								) 更新
+							.pm-input-group
+								label DM連結
+								input.pm-input-control(
+									id="city_"+city._id+"_dm_url"
+									type="text"
+									data-cityid=city._id
+									placeholder=""
+								)
+							.pm-input-group
+								button.pm-btn.pm-btn-blue.update-city-compensation-dm-url-btn(
+									data-for="city_"+city._id+"_dm_url"
+								) 更新
+				.col-md-6
+					.panel.panel-success
+						.panel-heading 修改鄉鎮區
+						.panel-body
+							.pm-input-group
+								label 鄉鎮區
+								.row
+									.col-md-6
+										select.pm-input-control.area-selection(
+											id="area_"+city._id + "_selection"
+											data-cityid=city._id
+										)
+											for area in areasByCity
+												option(value=area._id) #{area.name} #{area.babyCompensation || 0}
+									.col-md-6
+										textarea.pm-input-control(
+											id="city_"+city._id+"_area"
+											type="text"
+											placeholder="修改鄉鎮區"
+										) #{defaultArea.babyCompensation}
+							.pm-input-group
+								button.pm-btn.pm-btn-blue.update-area-compensation-btn(
+									data-for="city_"+city._id+"_area"
+									data-forselect="area_"+city._id+"_selection"
+								) 更新
+							.pm-input-group
+								label 網站連結
+								input.pm-input-control(
+									id="city_"+city._id+"_area_url"
+									type="text"
+									data-cityid=city._id
+									value=defaultArea.babyCompensationUrl || ""
+									placeholder=""
+								)
+							.pm-input-group
+								button.pm-btn.pm-btn-blue.update-area-compensation-url-btn(
+									data-for="city_"+city._id+"_area_url"
+									data-forselect="area_"+city._id+"_selection"
+								) 更新
+							.pm-input-group
+								label DM連結
+								input.pm-input-control(
+									id="city_"+city._id+"_area_dm_url"
+									type="text"
+									data-cityid=city._id
+									value=defaultArea.babyCompensationDMUrl || ""
+									placeholder=""
+								)
+							.pm-input-group
+								button.pm-btn.pm-btn-blue.update-area-compensation-dm-url-btn(
+									data-for="city_"+city._id+"_area_dm_url"
+									data-forselect="area_"+city._id+"_selection"
+								) 更新
 
 append body_scripts
 	script(src="/js/baby-compensation.js")

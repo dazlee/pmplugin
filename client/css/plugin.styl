@@ -17,6 +17,8 @@ user-select()
 	-ms-user-select: arguments
 	user-select: arguments
 
+.hidden
+	display: none;
 
 .pm-plugin
 	width: 400px
@@ -88,7 +90,11 @@ user-select()
 	border-radius: 4px
 
 	&:hover
+		color: white
+		text-decoration: none
 		opacity: 0.8
+	&.sparse
+		margin-right: 10px;
 .pm-btn-blue
 	background-color: #30a5ff
 	border-color: #30a5ff

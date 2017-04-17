@@ -5,10 +5,13 @@ const AreaStore = require("../../stores/area");
 const CityStore = require("../../stores/city");
 
 router.post("/baby-compensation/city", (req, res) => {
-	const { cityId, amount } = req.body;
-	AreaStore.updateAreasByCityId(cityId, {
-		babyCompensation: amount
-	})
+	const { cityId, amount, url, dmUrl } = req.body;
+	let attributes = {};
+	if (amount) {attributes.babyCompensation = amount.trim();}
+	if (url) {attributes.babyCompensationUrl = url.trim();}
+	if (dmUrl) {attributes.babyCompensationDMUrl = dmUrl.trim();}
+
+	AreaStore.updateAreasByCityId(cityId, attributes)
 	.then(() => {
 		res.status(200).send();
 		res.end();
@@ -19,10 +22,13 @@ router.post("/baby-compensation/city", (req, res) => {
 	});
 });
 router.post("/baby-compensation/area", (req, res) => {
-	const { areaId, amount } = req.body;
-	AreaStore.updateArea(areaId, {
-		babyCompensation: amount
-	})
+	const { areaId, amount, url, dmUrl } = req.body;
+	let attributes = {};
+	if (amount) {attributes.babyCompensation = amount.trim();}
+	if (url) {attributes.babyCompensationUrl = url.trim();}
+	if (dmUrl) {attributes.babyCompensationDMUrl = dmUrl.trim();}
+
+	AreaStore.updateArea(areaId, attributes)
 	.then(() => {
 		res.status(200).send();
 		res.end();

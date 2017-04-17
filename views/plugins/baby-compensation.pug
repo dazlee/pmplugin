@@ -1,0 +1,37 @@
+mixin baby_compensation()
+	#baby-compensation.pm-plugin
+		.pm-plugin-title 生育補助計算機
+		.pm-plugin-content
+			.pm-input-group
+				label 縣市
+				select#city-selector.pm-input-control
+					for city in cities
+						option(value=city._id) #{city.name}
+			- var defaultCity = cities[0];
+			- var defaultAreas = areas.filter(function (area) { return area.cityId == defaultCity._id});
+			.pm-input-group
+				label 鄉鎮區
+				select#area-selector.pm-input-control
+					for area in defaultAreas
+						option(value=area._id) #{area.name}
+			button#submit-baby-compensation-btn.pm-btn.pm-btn-blue 送出
+			#baby-compensation-result.pm-plugin-message.pm-input-group
+				.pm-plugin-message-title
+				pre.pm-plugin-message-content
+			#baby-compensation-actions.pm-input-group
+		.pm-plugin-footer
+			#pm-actions.pm-input-group.hidden
+				label 我有問題
+				div
+					a.pm-btn.sparse.pm-btn-blue(
+						href="https://www.messenger.com/t/StockPin"
+						target="_blank"
+					) 詢問FB
+					a.pm-btn.sparse.pm-btn-blue(
+						href="https://line.me/R/ti/p/%40bfo8311a"
+						target="_blank"
+					) 詢問LINE
+	script.
+		var baseUrl = "!{baseUrl}";
+		var cities = !{JSON.stringify(cities)};
+		var areas = !{JSON.stringify(areas)};

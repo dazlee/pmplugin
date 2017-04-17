@@ -12,6 +12,12 @@ const AreaSchema = new Schema({
 	},
 	babyCompensation: {
 		type: String
+	},
+	babyCompensationUrl: {
+		type: String
+	},
+	babyCompensationDMUrl: {
+		type: String
 	}
 }, {
     timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"},

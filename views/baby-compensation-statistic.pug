@@ -1,0 +1,31 @@
+extends ./layouts/admin
+
+block body_content
+	.statistic-charts.row
+		.col-md-12
+			.panel.panel-default
+				.panel-heading 每日搜尋次數
+				.panel-body
+					#searching.statistic-chart.basic
+		.col-md-12
+			.panel.panel-default
+				.panel-heading 每日DM下載次數
+				.panel-body
+					#download.statistic-chart.basic
+		.col-md-6
+			.panel.panel-default
+				.panel-heading 每日LINE聊天按鈕點擊次數
+				.panel-body
+					#line.statistic-chart.basic
+		.col-md-6
+			.panel.panel-default
+				.panel-heading 每日FB聊天按鈕點擊次數
+				.panel-body
+					#fb-messenger.statistic-chart.basic
+
+append body_scripts
+	script(src="https://code.highcharts.com/highcharts.src.js")
+	script(src="https://www.highcharts.com/media/com_demo/js/highslide-full.min.js")
+	script(src="https://www.highcharts.com/media/com_demo/js/highslide.config.js")
+	script(src="https://code.highcharts.com/modules/data.js")
+	script(src="/js/baby-compensation-statistic.js")
