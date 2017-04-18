@@ -44,6 +44,32 @@ $(function () {
 			});
 		}
 	});
+	$(document).on("click", ".update-city-compensation-restriction-btn", function (e) {
+		e.preventDefault();
+
+		var input = document.querySelector("#"+e.target.dataset.for);
+		var cityId = input.dataset.cityid;
+		var restriction = input.value;
+
+		if (restriction) {
+			var data = {
+				cityId: cityId,
+				restriction: restriction
+			};
+			$.ajax({
+				url: "/api/plugin/baby-compensation/city",
+				type: 'POST',
+				contentType: "application/json",
+				data: JSON.stringify(data),
+				success: function(data, textStatus) {
+					location.reload();
+				},
+				error: function (data, textStatus) {
+					console.log("error to update baby-compensation", data);
+				}
+			});
+		}
+	});
 	$(document).on("click", ".update-city-compensation-url-btn", function (e) {
 		e.preventDefault();
 
@@ -97,6 +123,7 @@ $(function () {
 		}
 	});
 
+
 	$(document).on("click", ".update-area-compensation-btn", function (e) {
 		var input = document.querySelector("#"+e.target.dataset.for);
 		var select = document.querySelector("#"+e.target.dataset.forselect);
@@ -123,7 +150,30 @@ $(function () {
 			});
 		}
 	});
+	$(document).on("click", ".update-area-compensation-restriction-url-btn", function (e) {
+		e.preventDefault();
 
+		var input = document.querySelector("#"+e.target.dataset.for);
+		var select = document.querySelector("#"+e.target.dataset.forselect);
+		var areaId = select.value;
+		var restriction = input.value;
+		var data = {
+			areaId: areaId,
+			restriction: restriction
+		};
+		$.ajax({
+			url: "/api/plugin/baby-compensation/area",
+			type: 'POST',
+			contentType: "application/json",
+			data: JSON.stringify(data),
+			success: function(data, textStatus) {
+				location.reload();
+			},
+			error: function (data, textStatus) {
+				console.log("error to update baby-compensation", data);
+			}
+		});
+	});
 	$(document).on("click", ".update-area-compensation-url-btn", function (e) {
 		e.preventDefault();
 
@@ -148,7 +198,6 @@ $(function () {
 			}
 		});
 	});
-
 	$(document).on("click", ".update-area-compensation-dm-url-btn", function (e) {
 		e.preventDefault();
 

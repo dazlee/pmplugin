@@ -1,6 +1,6 @@
 const AreaModel = require("../models/area");
 const projection = "cityId name";
-const babyCompensationProjection = "cityId name babyCompensation babyCompensationUrl babyCompensationDMUrl";
+const babyCompensationProjection = "cityId name babyCompensation babyCompensationRestriction babyCompensationUrl babyCompensationDMUrl";
 
 function getAllAreas() {
 	return AreaModel.find({}, projection).sort({_id: 1}).lean()

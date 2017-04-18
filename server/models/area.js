@@ -13,6 +13,9 @@ const AreaSchema = new Schema({
 	babyCompensation: {
 		type: String
 	},
+	babyCompensationRestriction: {
+		type: String
+	},
 	babyCompensationUrl: {
 		type: String
 	},

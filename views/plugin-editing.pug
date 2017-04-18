@@ -20,13 +20,23 @@ block body_content
 								label #{city.name}
 								textarea.pm-input-control(
 									id="city_"+city._id
-									type="text"
 									data-cityid=city._id
-									placeholder=""
+									placeholder="補助內容"
 								)
 							.pm-input-group
 								button.pm-btn.pm-btn-blue.update-city-compensation-btn(
 									data-for="city_"+city._id
+								) 更新
+							.pm-input-group
+								label 限制
+								textarea.pm-input-control(
+									id="city_"+city._id+"_restriction"
+									data-cityid=city._id
+									placeholder="限制"
+								)
+							.pm-input-group
+								button.pm-btn.pm-btn-blue.update-city-compensation-restriction-btn(
+									data-for="city_"+city._id+"_restriction"
 								) 更新
 							.pm-input-group
 								label 網站連結
@@ -76,6 +86,17 @@ block body_content
 								button.pm-btn.pm-btn-blue.update-area-compensation-btn(
 									data-for="city_"+city._id+"_area"
 									data-forselect="area_"+city._id+"_selection"
+								) 更新
+							.pm-input-group
+								label 限制
+								textarea.pm-input-control(
+									id="city_"+city._id+"_area_restriction"
+									data-cityid=city._id
+									placeholder="限制"
+								) #{defaultArea.babyCompensationRestriction || ""}
+							.pm-input-group
+								button.pm-btn.pm-btn-blue.update-area-compensation-restriction-btn(
+									data-for="city_"+city._id+"_area_restriction"
 								) 更新
 							.pm-input-group
 								label 網站連結

@@ -20,7 +20,19 @@ $(function () {
 				success: function(data, textStatus) {
 					var area = data.area;
 					document.querySelector("#baby-compensation-result .pm-plugin-message-title").innerHTML = data.city.name + " " + area.name;
-					document.querySelector("#baby-compensation-result .pm-plugin-message-content").innerHTML = area.babyCompensation;
+					if (area.babyCompensation) {
+						$("#baby-compensation-content").removeClass("hidden");
+						document.querySelector("#baby-compensation-content .content").innerHTML = area.babyCompensation;
+					} else {
+						$("#baby-compensation-content").addClass("hidden");
+					}
+					if (area.babyCompensationRestriction) {
+						$("#baby-compensation-restriction").removeClass("hidden");
+						document.querySelector("#baby-compensation-restriction .content").innerHTML = area.babyCompensationRestriction;
+					} else {
+						$("#baby-compensation-restriction").addClass("hidden");
+					}
+
 
 					var actionHTML = "";
 					if (area.babyCompensationUrl) {

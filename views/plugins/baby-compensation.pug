@@ -1,6 +1,8 @@
 mixin baby_compensation()
 	#baby-compensation.pm-plugin
-		.pm-plugin-title 生育補助計算機
+		.pm-plugin-title
+			img.logo(src="/images/logo.sm.png")
+			| 生育補助計算機
 		.pm-plugin-content
 			.pm-input-group
 				label 縣市
@@ -14,23 +16,34 @@ mixin baby_compensation()
 				select#area-selector.pm-input-control
 					for area in defaultAreas
 						option(value=area._id) #{area.name}
-			button#submit-baby-compensation-btn.pm-btn.pm-btn-blue 送出
+			.pm-input-group.ta-center
+				button#submit-baby-compensation-btn.pm-btn.pm-btn-blue.pm-btn-wide 開始計算
 			#baby-compensation-result.pm-plugin-message.pm-input-group
 				.pm-plugin-message-title
 				pre.pm-plugin-message-content
+					#baby-compensation-content.pm-plugin-panel.hidden
+						.pm-plugin-panel-heading 補助
+						.pm-plugin-panel-body.content
+					#baby-compensation-restriction.pm-plugin-panel.hidden
+						.pm-plugin-panel-heading 限制
+						.pm-plugin-panel-body.content
 			#baby-compensation-actions.pm-input-group
 		.pm-plugin-footer
 			#pm-actions.pm-input-group.hidden
 				label 我有問題
 				div
-					a.pm-btn.sparse.pm-btn-blue(
-						href="https://www.messenger.com/t/StockPin"
+					a.pm-btn.sparse.pm-btn-social.facebook(
+						href="https://www.messenger.com/t/richpocketmoney"
 						target="_blank"
-					) 詢問FB
-					a.pm-btn.sparse.pm-btn-blue(
-						href="https://line.me/R/ti/p/%40bfo8311a"
+					)
+						img(src="/images/facebook.png")
+						| 詢問FB
+					a.pm-btn.sparse.pm-btn-social.line(
+						href="https://line.me/R/ti/p/%40wga6526q"
 						target="_blank"
-					) 詢問LINE
+					)
+						img(src="/images/line.png")
+						| 詢問LINE
 	script.
 		var baseUrl = "!{baseUrl}";
 		var cities = !{JSON.stringify(cities)};
