@@ -11,13 +11,12 @@
 	        "database": "stock",
 	        "ConnectionLimit": 10
 	    },
-	    "logFilePath": "/var/log/plugin.log",
-	    "siteUrl": "http://ec2-54-238-195-108.ap-northeast-1.compute.amazonaws.com:3000"
+	    "logFilePath": "/var/log/plugin-dev.log"
 	},
 	"production": {
 		"mongoURL": "mongodb://localhost:27017/plugin",
-		"hostname": "http://localhost",
-	    "port": 3000,
+		"hostname": "http://plugin.pocketmoney.tw",
+	    "port": 80,
 	    "mysqlConfig": {
 	        "host": "localhost",
 	        "user": "root",
@@ -25,7 +24,6 @@
 	        "database": "stock",
 	        "ConnectionLimit": 10
 	    },
-	    "logFilePath": "/var/log/plugin.log",
-	    "siteUrl": "http://ec2-54-238-195-108.ap-northeast-1.compute.amazonaws.com:3000"
+	    "logFilePath": "/var/log/plugin.log"
 	}
 }
