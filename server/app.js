@@ -22,8 +22,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
 }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(require('stylus').middleware( {
 	src: path.join(__dirname, '../client'),
@@ -45,14 +45,17 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
     serverLogger.info("connected to mongoDB", serverConfig.mongoURL);
 });
 
-app.use("/plugin", require("./routes/plugin"));
-// disable routes temporarily
-app.use("/", require("./routes/app"));
-app.use("/admin/plugin", require("./routes/plugin-editing"));
+
+app.use("/login", require("./routes/login"));
+app.use("/logout", require("./routes/logout"));
 
 // api
 app.use("/plugin", require("./routes/plugin"));
 app.use("/api/plugin", require("./routes/api/plugin"));
+
+app.use(/^((?!\/api).)*$/, require("./middlewares/checkLogin"));
+app.use("/", require("./routes/app"));
+app.use("/admin/plugin", require("./routes/plugin-editing"));
 
 // catch 404 and handle it
 app.use(function (req, res, next) {
