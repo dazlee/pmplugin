@@ -9,6 +9,7 @@ $(function () {
 			success: function(data, textStatus) {
 				var area = data.area;
 				document.querySelector("#city_" + cityId + "_area").value = area.babyCompensation || "";
+				document.querySelector("#city_" + cityId + "_area_restriction").value = area.babyCompensationRestriction || "";
 				document.querySelector("#city_" + cityId + "_area_url").value = area.babyCompensationUrl || "";
 				document.querySelector("#city_" + cityId + "_area_dm_url").value = area.babyCompensationDMUrl || "";
 			},
@@ -134,6 +135,32 @@ $(function () {
 			var data = {
 				areaId: areaId,
 				amount: amount
+			};
+
+			$.ajax({
+				url: "/api/plugin/baby-compensation/area",
+				type: 'POST',
+				contentType: "application/json",
+				data: JSON.stringify(data),
+				success: function(data, textStatus) {
+					location.reload();
+				},
+				error: function (data, textStatus) {
+					console.log("error to update baby-compensation", data);
+				}
+			});
+		}
+	});
+	$(document).on("click", ".update-area-compensation-restriction-btn", function (e) {
+		var input = document.querySelector("#"+e.target.dataset.for);
+		var select = document.querySelector("#"+e.target.dataset.forselect);
+		var areaId = select.value;
+		var restriction = input.value;
+
+		if (restriction) {
+			var data = {
+				areaId: areaId,
+				restriction: restriction
 			};
 
 			$.ajax({

@@ -23,7 +23,7 @@ router.post("/baby-compensation/city", (req, res) => {
 	});
 });
 router.post("/baby-compensation/area", (req, res) => {
-	const { cityId, amount, restriction, url, dmUrl } = req.body;
+	const { areaId, amount, restriction, url, dmUrl } = req.body;
 	let attributes = {};
 	if (amount) {attributes.babyCompensation = amount.trim();}
 	if (restriction) {attributes.babyCompensationRestriction = restriction.trim();}
