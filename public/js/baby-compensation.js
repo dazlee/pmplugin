@@ -36,10 +36,10 @@ $(function () {
 
 					var actionHTML = "";
 					if (area.babyCompensationUrl) {
-						actionHTML += '<a href="' + area.babyCompensationUrl + '" class="pm-btn sparse pm-btn-blue" target="_blank">查看網站</a>'
+						actionHTML += '<a href="' + area.babyCompensationUrl + '" class="pm-btn sparse pm-btn-blue pm-action-button" target="_blank" data-c="website">查看網站</a>'
 					}
 					if (area.babyCompensationDMUrl) {
-						actionHTML += '<a href="' + area.babyCompensationDMUrl + '" class="pm-btn sparse pm-btn-blue" target="_blank">下載文件</a>'
+						actionHTML += '<a href="' + area.babyCompensationDMUrl + '" class="pm-btn sparse pm-btn-blue pm-action-button" target="_blank" data-c="download">下載文件</a>'
 					}
 					document.querySelector("#baby-compensation-actions").innerHTML = actionHTML;
 
@@ -47,6 +47,21 @@ $(function () {
 				},
 				error: function (data, textStatus) {
 					console.log("error to update baby-compensation", data);
+				}
+			});
+		});
+
+		$(document).on("click", ".pm-action-button", function (e) {
+			var citySelector = document.querySelector("#city-selector");
+			var areaSelector = document.querySelector("#area-selector");
+			$.ajax({
+				url: baseUrl + "/api/plugin/baby-compensation/city/" + citySelector.value + "/area/" + areaSelector.value + "/l?c=" + e.target.dataset.c,
+				type: 'GET',
+				success: function (data, textStatus) {
+					console.log("success to update baby-compensation");
+				},
+				error: function (data, textStatus) {
+					console.log("error to update baby-compensation");
 				}
 			});
 		});
