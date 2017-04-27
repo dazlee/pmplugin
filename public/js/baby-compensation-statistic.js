@@ -39,7 +39,7 @@ $(function () {
 		var result = {};
 		areaIds.reduce(function (reduced, areaId) {
 			if (areaId === "all") {
-				reduced[areaId] = filteredAccessLogs;
+				reduced[areaId] = mergeCountByDate(filteredAccessLogs);
 			} else {
 				reduced[areaId] = filterByAreaName(areaId, filteredAccessLogs);
 			}
@@ -87,4 +87,22 @@ $(function () {
 	var filterByCityId = filterBy("content.city._id");
 	var filterByAreaId = filterBy("content.area._id");
 	var filterByAreaName = filterBy("content.area.name");
+	var mergeCountByDate = function (areas) {
+		var merged = areas.reduce(function (reduced, area) {
+			if (!reduced[area.date]) {
+				reduced[area.date] = {
+					date: area.date,
+					count: area.count
+				};
+			} else {
+				reduced[area.date].count += area.count;
+			}
+			return reduced;
+		}, {});
+		var keys = Object.keys(merged);
+		var result = keys.map(function (key) {
+			return merged[key];
+		});
+		return result;
+	};
 });
