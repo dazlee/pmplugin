@@ -22,11 +22,20 @@ function getNestedPropertyByString (o, s) {
 	return o;
 }
 function getSeriesByAccessLogs(name, accessLogs) {
+	var data = accessLogs.map(function (accessLog) {
+		return [new Date(accessLog.date).getTime(), accessLog.count];
+	});
+	data.sort(function (a,b) {
+		if(a[0] < b[0]) {
+			return 1;
+		} else if (a[0] > b[0]) {
+			return -1;
+		}
+		return 0;
+	});
 	return {
 		name: name,
-		data: accessLogs.map(function (accessLog) {
-			return [new Date(accessLog.date).getTime(), accessLog.count];
-		})
+		data: data
 	};
 }
 function drawDatetimeLineChart (target, title, series) {
