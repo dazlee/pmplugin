@@ -6,22 +6,154 @@ block body_content
 			.panel.panel-default
 				.panel-heading 每日搜尋次數
 				.panel-body
-					#searching.statistic-chart.basic
+					form#query-statistic-form
+						.row
+							.col-md-4
+								- var defaultCity = cities[0];
+								- var defaultAreas = areas.filter(function (area) { return area.cityId == defaultCity._id});
+								label 縣市
+								select.pm-input-control.city-selector(
+									name="city"
+									data-for="query-area-checkboxes"
+									data-fortype="checkbox"
+								)
+									for city in cities
+										option(value=city._id) #{city.name}
+						.row
+							.col-md-12
+								label 鄉鎮區
+								div
+									label.checkbox-inline
+										input(type="checkbox", name="area", value="all")
+										| 全部
+								div#query-area-checkboxes.area-checkboxes
+									for area in defaultAreas
+										label.checkbox-inline
+											input(type="checkbox", name="area", value=area.name)
+											| #{area.name}
+					.row
+						.col-md-12
+							button.pm-btn.pm-btn-blue.update-statistic-btn(
+								data-for="query-statistic-chart"
+								data-category="query"
+								data-forform="query-statistic-form"
+							) 更新
+					#query-statistic-chart.statistic-chart.basic
 		.col-md-12
 			.panel.panel-default
 				.panel-heading 每日DM下載次數
 				.panel-body
-					#download.statistic-chart.basic
+					form#download-statistic-form
+						.row
+							.col-md-4
+								- var defaultCity = cities[0];
+								- var defaultAreas = areas.filter(function (area) { return area.cityId == defaultCity._id});
+								label 縣市
+								select.pm-input-control.city-selector(
+									name="city"
+									data-for="download-area-checkboxes"
+									data-fortype="checkbox"
+								)
+									for city in cities
+										option(value=city._id) #{city.name}
+						.row
+							.col-md-12
+								label 鄉鎮區
+								div
+									label.checkbox-inline
+										input(type="checkbox", name="area", value="all")
+										| 全部
+								div#download-area-checkboxes.area-checkboxes
+									for area in defaultAreas
+										label.checkbox-inline
+											input(type="checkbox", name="area", value=area.name)
+											| #{area.name}
+					.row
+						.col-md-12
+							button.pm-btn.pm-btn-blue.update-statistic-btn(
+								data-for="download-statistic-chart"
+								data-category="download"
+								data-forform="download-statistic-form"
+							) 更新
+					#download-statistic-chart.statistic-chart.basic
 		.col-md-6
 			.panel.panel-default
 				.panel-heading 每日LINE聊天按鈕點擊次數
 				.panel-body
-					#line.statistic-chart.basic
+					form#line-statistic-form
+						.row
+							.col-md-4
+								- var defaultCity = cities[0];
+								- var defaultAreas = areas.filter(function (area) { return area.cityId == defaultCity._id});
+								label 縣市
+								select.pm-input-control.city-selector(
+									name="city"
+									data-for="line-area-checkboxes"
+									data-fortype="checkbox"
+								)
+									for city in cities
+										option(value=city._id) #{city.name}
+						.row
+							.col-md-12
+								label 鄉鎮區
+								div
+									label.checkbox-inline
+										input(type="checkbox", name="area", value="all")
+										| 全部
+								div#line-area-checkboxes.area-checkboxes
+									for area in defaultAreas
+										label.checkbox-inline
+											input(type="checkbox", name="area", value=area.name)
+											| #{area.name}
+					.row
+						.col-md-12
+							button.pm-btn.pm-btn-blue.update-statistic-btn(
+								data-for="line-statistic-chart"
+								data-category="line"
+								data-forform="line-statistic-form"
+							) 更新
+					#line-statistic-chart.statistic-chart.basic
 		.col-md-6
 			.panel.panel-default
 				.panel-heading 每日FB聊天按鈕點擊次數
 				.panel-body
-					#fb-messenger.statistic-chart.basic
+					form#facebook-statistic-form
+						.row
+							.col-md-4
+								- var defaultCity = cities[0];
+								- var defaultAreas = areas.filter(function (area) { return area.cityId == defaultCity._id});
+								label 縣市
+								select.pm-input-control.city-selector(
+									name="city"
+									data-for="facebook-area-checkboxes"
+									data-fortype="checkbox"
+								)
+									for city in cities
+										option(value=city._id) #{city.name}
+						.row
+							.col-md-12
+								label 鄉鎮區
+								div
+									label.checkbox-inline
+										input(type="checkbox", name="area", value="all")
+										| 全部
+								div#facebook-area-checkboxes.area-checkboxes
+									for area in defaultAreas
+										label.checkbox-inline
+											input(type="checkbox", name="area", value=area.name)
+											| #{area.name}
+					.row
+						.col-md-12
+							button.pm-btn.pm-btn-blue.update-statistic-btn(
+								data-for="facebook-statistic-chart"
+								data-category="facebook"
+								data-forform="facebook-statistic-form"
+							) 更新
+					#facebook-statistic-chart.statistic-chart.basic
+		script.
+			var cities = !{JSON.stringify(cities)};
+			var areas = !{JSON.stringify(areas)};
+			var accessLogs = !{JSON.stringify(accessLogs)};
 
 append body_scripts
 	script(src="https://code.highcharts.com/highcharts.src.js")
