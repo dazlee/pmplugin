@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "website for plugin editing/publishing",
   "scripts": {
-    "start": "supervisor bin/root.js"
+    "start": "node bin/root.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
