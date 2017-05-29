@@ -124,7 +124,7 @@ router.get("/baby-compensation/city/:cityId/area/:areaId/l", (req, res) => {
 
 
 
-router.get("/baby-compensation/city/:cityName/area/:areaName", (req, res) => {
+router.get("/tmp/baby-compensation/city/:cityName/area/:areaName", (req, res) => {
 	const { cityName, areaName } = req.params;
 	const promises = [CityStore.getCityByName(cityName), AreaStore.getAreaByNameWithBabyCompensation(areaName), ]
 	Promise.all(promises)
