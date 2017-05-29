@@ -122,4 +122,23 @@ router.get("/baby-compensation/city/:cityId/area/:areaId/l", (req, res) => {
 	});
 });
 
+
+
+router.get("/baby-compensation/city/:cityName/area/:areaName", (req, res) => {
+	const { cityName, areaName } = req.params;
+	const promises = [CityStore.getCityByName(cityName), AreaStore.getAreaByNameWithBabyCompensation(areaName), ]
+	Promise.all(promises)
+	.then(([city, area]) => {
+		res.status(200).send({
+			city: city,
+			area: area
+		});
+		res.end();
+	})
+	.catch((error) => {
+		res.status(400).send(error);
+		res.end();
+	});
+});
+
 module.exports = router;

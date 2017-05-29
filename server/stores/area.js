@@ -16,6 +16,12 @@ function getAreaByIdWithBabyCompensation(areaId) {
 	}, babyCompensationProjection).lean()
 	.exec();
 }
+function getAreaByNameWithBabyCompensation(areaName) {
+	return AreaModel.findOne({
+		name: areaName
+	}, babyCompensationProjection).lean()
+	.exec();
+}
 function updateAreasByCityId(cityId, attributes) {
 	return AreaModel.update({
 		cityId: cityId
@@ -39,6 +45,7 @@ module.exports = {
 	getAllAreas,
 	getAllAreasWithBabyCompensation,
 	getAreaByIdWithBabyCompensation,
+	getAreaByNameWithBabyCompensation,
 	updateArea,
 	updateAreasByCityId
 };
